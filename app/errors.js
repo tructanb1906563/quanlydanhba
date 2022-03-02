@@ -1,5 +1,5 @@
-class BadRequestError extends Error {
-    constructor(statusCode, message) {
+class BadRequestError extends Error{
+    constructor(statusCode,message){
         super();
         this.statusCode = statusCode;
         this.message = message;
@@ -7,20 +7,19 @@ class BadRequestError extends Error {
 }
 
 class ErrorHandler{
-    constructor() {
-        this.handleError = (error, responstream = null) => {
-            if (responstream) {
-                responstream.status(error.statusCode || 500).json({
-                    message: error.message || "Internal Server Error",
-                });
-            } else {
+    constructor(){
+        this.handleError = (error,responstream =null)=>{
+            if(responstream){
+                responstream.status(error.statusCode||500).json({
+                    message:error.message|| "Internal Server Error",
+                })
+            }else{
                 console.log(error);
             }
         };
     }
 }
-
-module.exports = {
+module.exports ={
     BadRequestError,
-    errorHandler: new ErrorHandler(),
+    errorHandler:new ErrorHandler(),
 };
